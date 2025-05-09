@@ -2,5 +2,6 @@
 
 - Authelia: OAuth2
 - GitTea: Git
-- Coder: conainerized IDEs
+- Coder: containerized IDEs
+  - local docker registry
 - NextCloud: Google type suit
