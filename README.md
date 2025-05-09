@@ -5,6 +5,9 @@
 - Apache: web server
   - for course websites
   - for videos
+- student Debian server
+  - for websites
+  - for development enviroment
 - GitTea: Git
 - Coder: containerized IDEs
   - local docker registry
