@@ -10,5 +10,6 @@
   - for development enviroment
 - GitTea: Git
 - Coder: containerized IDEs
+  - https://github.com/coder/code-server 
   - local docker registry
 - NextCloud: Google type suit
