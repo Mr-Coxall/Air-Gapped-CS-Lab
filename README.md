@@ -1,4 +1,4 @@
-# Air-Gapped-CS-Lab
+# Air Gapped Computer Science Lab
 
 - Authelia: OAuth2
 - GitTea: Git
