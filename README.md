@@ -2,6 +2,8 @@
 
 - Authelia: OAuth2
 - Nginx: reverse proxy
+- Apache: web server
+  - and PHP
 - GitTea: Git
 - Coder: containerized IDEs
   - local docker registry
