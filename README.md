@@ -18,3 +18,6 @@ Run on Proxmox cluster:
 - LXC for each student
   - install Coder Server for web access ide
 - Dicker Swarm for auxilary services
+
+Restrict USB on student computers
+- at the BIOS level
