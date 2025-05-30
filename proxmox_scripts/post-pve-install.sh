@@ -26,7 +26,8 @@ HOLD="-"
 CM="${GN}✓${CL}"
 CROSS="${RD}✗${CL}"
 
-set -euo pipefail
+# need to comment this out to run locally
+#set -euo pipefail
 shopt -s inherit_errexit nullglob
 
 msg_info() {
