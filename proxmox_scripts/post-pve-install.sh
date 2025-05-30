@@ -206,10 +206,10 @@ EOF
     "no" " " 3>&2 2>&1 1>&3)
   case $CHOICE in
   yes)
-    msg_info "Updating Proxmox VE (Patience)"
-    apt-get update &>/dev/null
-    apt-get -y dist-upgrade &>/dev/null
-    msg_ok "Updated Proxmox VE"
+    msg_info "NOT Updating Proxmox VE"
+    #apt-get update &>/dev/null
+    #apt-get -y dist-upgrade &>/dev/null
+    #msg_ok "Updated Proxmox VE"
     ;;
   no)
     msg_error "Selected no to Updating Proxmox VE"
