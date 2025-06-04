@@ -19,3 +19,7 @@ Changes to BIOS:
 
 - 2 x 500 Gig SSDs
 - 1 x 256 Gig NVME
+
+# Added USB Ethernet
+
+- 1 x USB ethernet -> this is connected to internet, internal nic connected to Air Gapped network
