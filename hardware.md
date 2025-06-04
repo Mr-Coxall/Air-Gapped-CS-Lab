@@ -8,7 +8,12 @@ Update BIOS to latest version:
 Changes to BIOS:
   - reset to "BIOS Defaults"
   - change "Boot Sequence" to UEFI
-  - change Power to "On" on reboot
+  - change "Enable Legacy Option ROMs" to off
+  - keep "TMP ON" to true
+  - change "Secure Boot Enable" to true
+  - change "AC Recovery" to "Power On"
+  - ENSURE "Virtualization" is enabled!
+  - change "Trusted Execution" to on
 
 # Added Storage
 
