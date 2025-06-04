@@ -29,7 +29,7 @@ services:
     # lines and set the group ID to one that has write
     # permissions on the docker socket.
     group_add:
-      - "999" # docker group on host
+      - "996" # docker group on host on Proxmox, running LXC docker & portainer community script
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
     depends_on:
