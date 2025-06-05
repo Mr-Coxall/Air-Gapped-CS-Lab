@@ -8,3 +8,64 @@
 - pick "Managed interface" of the USB ethernet
 - "Hostname": "Node-01.xxx"
 - changed IP addess to: xx.xx.xx.11/24 (.10 will be common IP address later)
+
+# Setup Proxmox
+
+
+## Initial Fixes on each Machine
+- run the [Proxmox Community: Post Install script](https://community-scripts.github.io/ProxmoxVE/scripts?id=post-pve-install) in the shell
+  - DO NOT disable HA!
+ 
+## Create the Cluster
+  - on the master node (not with the common IP, but its IP), select:
+    - DataCenter
+    - Cluster
+    - Create Cluster
+- give it a Cluster Name (School-VPS)
+- copy the "Join Information"
+- goto the next node (with their IP address, not common) and join the cluster
+  - enter in the password of the master node
+- you will have to re-login to the servers
+
+## Install Ceph
+- ensure you are NOT using the shared IP address
+- start on the master node (with its IP address)
+- select:
+  - Ceph
+  - change the "repository" to "No-Subscription"
+  - ensure this one finishes completely before doing any others, this master node needs to be done first
+- next setup storage:
+  - add monitors
+  - add managers
+  - whip each drive
+  - create OSD on each drive
+  - create common pool
+ 
+## Install KeepAlived
+- [YouTube Video](https://www.youtube.com/watch?v=82Q4SZMW-zg&list=PLwcxrRo-VwS2gNgY-GlPGDYZ6KCwSu3tD&index=3)
+- [GitHub Repo](https://github.com/mrp-yt/Galaxy-Home-Lab/blob/main/Services/keepalived/keepalived-setup.md)
+- REMEMBER: each machine gets a different priority (lower) and the "Master" node gets a special file, when setting up the config file
+- also, ensure you set the IP to the one you are using as the single IP for cluster
+- you can turn off the master and see if the others will pick up from the common IP address
+
+## CloudFlare
+- use community script
+  - [Proxmox VE Cloudflared LXC](https://community-scripts.github.io/ProxmoxVE/scripts?id=cloudflared)
+- be patient, it takes time to start on the 2nd step when you add in your key
+- in CloudFlare Dashboard change the following:
+  - noTLSVerify: true
+  - disableChunkedEncoding: true
+ 
+## Tailscale
+- use community script
+  - [Proxmox VE Tailscale LXC](https://community-scripts.github.io/ProxmoxVE/scripts?id=add-tailscale-lxc)
+- create a new Debian 12 (must be) LXC
+- then in the node run the install command
+- once installed, reboot the LXC
+- then run this command:
+  -  tailscale up --advertise-exit-node --advertise-routes=10.100.0.0/24 --accept-routes
+  -  replace the "10.100.0.0/24" with your VLAN that your proxmox cluster is on
+- then goto Tailscale, find the new node and turn on "Exit Node" & "Subnets"
+  - "Exit Node" will let you exit traffic out this node (you now have a VPN!)
+  - "Subnet", will let you connect to other VMs in the VLAN
+  - REMEMBER: all VMs will most like still not let anyone ssh into them using "root", so you wil need to create another user on any VM that you want to SSH into!
