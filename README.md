@@ -5,9 +5,9 @@
 running on Dell OptiPlex 5050
 
 Run on Proxmox cluster:
-- load each of 3 nodes with Proxmox 8.4 (https://www.proxmox.com/en/downloads)
-- set IP range to: 10.100.204.101, 102, 103 (for my network)
-  - will be setting common IP address to 10.100.204.100 for cluster
+- load each of 3 nodes with Proxmox (https://www.proxmox.com/en/downloads)
+- set IP range to: 10.100.204.11, 12, 13 (for my network)
+  - will be setting common IP address to 10.100.204.10 for cluster
 - LXC for each student
   - install Coder Server for web access ide
     - https://github.com/coder/code-server
