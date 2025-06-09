@@ -63,6 +63,24 @@
 - create a new Debian 12 (must be) LXC
 - then in the node run the install command
 - once installed, reboot the LXC
+- now run these commands (from: https://tailscale.com/kb/1019/subnets)
+  - ```bash
+    echo 'net.ipv4.ip_forward = 1' | sudo tee -a /etc/sysctl.d/99-tailscale.conf
+    echo 'net.ipv6.conf.all.forwarding = 1' | sudo tee -a /etc/sysctl.d/99-tailscale.conf
+    sudo sysctl -p /etc/sysctl.d/99-tailscale.conf
+    ```
+  - now you need to make this permanent after reboot; open up /etc/sysctl.d/99-sysctl.conf
+  - add the follow to the end:
+  - ```bash
+    net.ipv4.ip_forward = 1
+    net.ipv6.conf.all.forwarding = 1
+    ```
+- now reboot again to make the changes permanent
+  - you can check by running:
+    ```bash
+    sysctl net.ipv4.ip_forward
+    sysctl sysctl net.ipv4.ip_forward
+    ```
 - then run this command:
   -  tailscale up --advertise-exit-node --advertise-routes=10.100.204.0/24 --accept-routes
   -  replace the "10.100.0.0/24" with your VLAN that your proxmox cluster is on
