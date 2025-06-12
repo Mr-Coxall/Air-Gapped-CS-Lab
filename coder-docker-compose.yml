@@ -19,6 +19,8 @@ services:
       #CODER_ACCESS_URL: "https://coder-icd2o-1-teh.type-code.cloud"
       # allow admin to open all user containers
       CODER_DANGEROUS_ALLOW_PATH_APP_SITE_OWNER_ACCESS: true
+      # to disable GitHub login
+      CODER_OAUTH2_GITHUB_DEFAULT_PROVIDER_ENABLE=false
       # for GitHub Auth
       #CODER_OAUTH2_GITHUB_ALLOW_SIGNUPS: true
       #CODER_OAUTH2_GITHUB_ALLOWED_ORGS: "MTHS-ICD2O-1-2024"
