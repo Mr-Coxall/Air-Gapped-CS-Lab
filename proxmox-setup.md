@@ -40,6 +40,7 @@
   - whip each drive
   - create OSD on each drive
   - create common pool
+    - this is where you want groups of 3! 
  
 ## Install KeepAlived
 - [YouTube Video](https://www.youtube.com/watch?v=82Q4SZMW-zg&list=PLwcxrRo-VwS2gNgY-GlPGDYZ6KCwSu3tD&index=3)
