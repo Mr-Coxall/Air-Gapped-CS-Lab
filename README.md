@@ -5,7 +5,7 @@
 running on Dell OptiPlex 5050
 
 Run on Proxmox cluster:
-- load each of 3 nodes with Proxmox (https://www.proxmox.com/en/downloads)
+- load each of nodes with Proxmox (https://www.proxmox.com/en/downloads)
 - set IP range to: 10.100.204.11, 12, 13 (for my network)
   - will be setting common IP address to 10.100.204.10 for cluster
 - LXC for each student
