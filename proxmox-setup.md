@@ -28,6 +28,7 @@
 
 ## Install Ceph
 - ensure you are NOT using the shared IP address
+- best to place disks in groups of 3, so you have quarum for redundancy
 - start on the master node (with its IP address)
 - select:
   - Ceph
