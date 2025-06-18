@@ -29,6 +29,12 @@
 ## Install Ceph
 - ensure you are NOT using the shared IP address
 - best to place disks in groups of 3, so you have quarum for redundancy
+- whip the drives first
+  - if they have a "hold" on them:
+  ```bash
+  lsblk
+  dmsetup remove <ID from above>
+  ``` 
 - start on the master node (with its IP address)
 - select:
   - Ceph
