@@ -1,3 +1,4 @@
+version: "3.9"
 services:
   coder:
     # This MUST be stable for our documentation and
@@ -11,16 +12,15 @@ services:
       # You'll need to set CODER_ACCESS_URL to an IP or domain
       # that workspaces can reach. This cannot be localhost
       # or 127.0.0.1 for non-Docker templates!
-      #CODER_ACCESS_URL: "${CODER_ACCESS_URL}"
       CODER_ACCESS_URL: "http://10.100.204.221"
-      # to disable GitHub login
-      CODER_OAUTH2_GITHUB_DEFAULT_PROVIDER_ENABLE=false
+      # allow admin to open all user containers
+      CODER_DANGEROUS_ALLOW_PATH_APP_SITE_OWNER_ACCESS: true
     # If the coder user does not have write permissions on
     # the docker socket, you can uncomment the following
     # lines and set the group ID to one that has write
     # permissions on the docker socket.
-    #group_add:
-    #  - "998" # docker group on host
+    group_add:
+      - "996" # docker group on host
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       # Run "docker volume rm coder_coder_home" to reset the dev tunnel url (https://abc.xyz.try.coder.app).
