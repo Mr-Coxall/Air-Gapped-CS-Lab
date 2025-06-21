@@ -1,50 +1,42 @@
-version: "3.9"
 services:
   coder:
     # This MUST be stable for our documentation and
     # other automations.
     image: ghcr.io/coder/coder:${CODER_VERSION:-latest}
-    # restart automatically
-    restart: unless-stopped
     ports:
-      - "7081:7081"
+      - "80:7080"
     environment:
       CODER_PG_CONNECTION_URL: "postgresql://${POSTGRES_USER:-username}:${POSTGRES_PASSWORD:-password}@database/${POSTGRES_DB:-coder}?sslmode=disable"
-      CODER_HTTP_ADDRESS: "0.0.0.0:7081"
+      CODER_HTTP_ADDRESS: "0.0.0.0:7080"
       # You'll need to set CODER_ACCESS_URL to an IP or domain
       # that workspaces can reach. This cannot be localhost
       # or 127.0.0.1 for non-Docker templates!
-      # CODER_ACCESS_URL: "${CODER_ACCESS_URL}"
-      CODER_ACCESS_URL: "http://10.100.204.20:7081"
-      #CODER_ACCESS_URL: "https://coder-icd2o-1-teh.type-code.cloud"
-      # allow admin to open all user containers
-      CODER_DANGEROUS_ALLOW_PATH_APP_SITE_OWNER_ACCESS: true
+      #CODER_ACCESS_URL: "${CODER_ACCESS_URL}"
+      CODER_ACCESS_URL: "http://10.100.204.221"
       # to disable GitHub login
       CODER_OAUTH2_GITHUB_DEFAULT_PROVIDER_ENABLE=false
-      # for GitHub Auth
-      #CODER_OAUTH2_GITHUB_ALLOW_SIGNUPS: true
-      #CODER_OAUTH2_GITHUB_ALLOWED_ORGS: "MTHS-ICD2O-1-2024"
-      #CODER_OAUTH2_GITHUB_CLIENT_ID: "Ov23li0ypKI49RYLsYuT"
-      #CODER_OAUTH2_GITHUB_CLIENT_SECRET: "5012647c85ff77194cfb31c3c3099cfbef62b681"
     # If the coder user does not have write permissions on
     # the docker socket, you can uncomment the following
     # lines and set the group ID to one that has write
     # permissions on the docker socket.
-    group_add:
-      - "996" # docker group on host on Proxmox, running LXC docker & portainer community script
+    #group_add:
+    #  - "998" # docker group on host
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
+      # Run "docker volume rm coder_coder_home" to reset the dev tunnel url (https://abc.xyz.try.coder.app).
+      # This volume is not required in a production environment - you may safely remove it.
+      # Coder can recreate all the files it needs on restart.
+      - coder_home:/home/coder
     depends_on:
       database:
         condition: service_healthy
   database:
     # Minimum supported version is 13.
     # More versions here: https://hub.docker.com/_/postgres
-    image: "postgres:16"
-    # restart automatically
-    restart: unless-stopped
-    ports:
-      - "5433:5432"
+    image: "postgres:17"
+    # Uncomment the next two lines to allow connections to the database from outside the server.
+    #ports:
+    #  - "5432:5432"
     environment:
       POSTGRES_USER: ${POSTGRES_USER:-username} # The PostgreSQL user (useful to connect to the database)
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-password} # The PostgreSQL password (useful to connect to the database)
@@ -62,3 +54,4 @@ services:
       retries: 5
 volumes:
   coder_data:
+  coder_home:
