@@ -1,4 +1,3 @@
-version: "3.9"
 services:
   coder:
     # This MUST be stable for our documentation and
@@ -6,6 +5,7 @@ services:
     image: ghcr.io/coder/coder:${CODER_VERSION:-latest}
     ports:
       - "80:7080"
+    restart: unless-stopped
     environment:
       CODER_PG_CONNECTION_URL: "postgresql://${POSTGRES_USER:-username}:${POSTGRES_PASSWORD:-password}@database/${POSTGRES_DB:-coder}?sslmode=disable"
       CODER_HTTP_ADDRESS: "0.0.0.0:7080"
@@ -37,6 +37,7 @@ services:
     # Uncomment the next two lines to allow connections to the database from outside the server.
     #ports:
     #  - "5432:5432"
+    restart: unless-stopped
     environment:
       POSTGRES_USER: ${POSTGRES_USER:-username} # The PostgreSQL user (useful to connect to the database)
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-password} # The PostgreSQL password (useful to connect to the database)
