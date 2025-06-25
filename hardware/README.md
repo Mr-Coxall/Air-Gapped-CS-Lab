@@ -1,9 +1,12 @@
 # Hardware
 
-The servers that were used were 3 x Dell Optiplex 5050s.
+## Servers
 
-Update BIOS to latest version:
-  - 1.30 at time
+The servers that were used were 3 x Dell Optiplex 5050s.
+Then we upgrade to 9 x Lenovo ThinkCentre M720q Tiny.
+### BIOS Settings
+
+Update BIOS to latest version
 
 Changes to BIOS:
   - reset to "BIOS Defaults"
@@ -15,11 +18,12 @@ Changes to BIOS:
   - ENSURE "Virtualization" is enabled!
   - change "Trusted Execution" to on
 
-# Added Storage
+## Storage
 
+### 3 Servers 
 - 2 x 500 Gig SSDs
 - 1 x 256 Gig NVME
 
-# Added USB Ethernet
-
-- 1 x USB ethernet -> this is connected to internet, internal nic connected to Air Gapped network
+### 9 Servers 
+- 1 x 500 Gig SSDs
+- 1 x 256 Gig NVME
