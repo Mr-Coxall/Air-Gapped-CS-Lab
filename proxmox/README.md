@@ -89,7 +89,9 @@
     sysctl sysctl net.ipv4.ip_forward
     ```
 - then run this command:
-  -  tailscale up --advertise-exit-node --advertise-routes=10.100.204.0/24 --accept-routes
+  -  ```bash
+     tailscale up --advertise-exit-node --advertise-routes=10.100.204.0/24 --accept-routes
+     ```
   -  replace the "10.100.204.0/24" with your VLAN that your proxmox cluster is on
 - then goto Tailscale, find the new node and turn on "Exit Node" & "Subnets"
   - "Exit Node" will let you exit traffic out this node (you now have a VPN!)
