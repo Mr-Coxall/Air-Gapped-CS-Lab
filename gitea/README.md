@@ -15,4 +15,4 @@
   - [oauth2]
     ENABLED = true
 
-![alt Gitea admin login(./gitea_loggins.png)
+![alt Gitea admin login](./gitea_loggins.png)
