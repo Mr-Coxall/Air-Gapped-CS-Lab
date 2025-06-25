@@ -3,7 +3,9 @@
 ## Servers
 
 The servers that were used were 3 x Dell Optiplex 5050s.
+
 Then we upgrade to 9 x Lenovo ThinkCentre M720q Tiny.
+
 ### BIOS Settings
 
 Update BIOS to latest version
