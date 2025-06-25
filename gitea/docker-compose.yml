@@ -1,85 +1,41 @@
+networks:
+  gitea:
+    external: false
+
 services:
-  coder:
-    # This MUST be stable for our documentation and
-    # other automations.
-    image: ghcr.io/coder/coder:${CODER_VERSION:-latest}
+  server:
+    image: docker.gitea.com/gitea:1.24.2
+    container_name: gitea
+    environment:
+      - USER_UID=1000
+      - USER_GID=1000
+      - GITEA__database__DB_TYPE=postgres
+      - GITEA__database__HOST=db:5432
+      - GITEA__database__NAME=gitea
+      - GITEA__database__USER=gitea
+      - GITEA__database__PASSWD=gitea
+      - GITEA__OAUTH2__ENABLED=true
+    restart: unless-stopped
+    networks:
+      - gitea
+    volumes:
+      - ./gitea:/data
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
     ports:
-      - "80:7080"
-    restart: unless-stopped
-    environment:
-      CODER_PG_CONNECTION_URL: "postgresql://${POSTGRES_USER:-username}:${POSTGRES_PASSWORD:-password}@database/${POSTGRES_DB:-coder}?sslmode=disable"
-      CODER_HTTP_ADDRESS: "0.0.0.0:7080"
-      # You'll need to set CODER_ACCESS_URL to an IP or domain
-      # that workspaces can reach. This cannot be localhost
-      # or 127.0.0.1 for non-Docker templates!
-      CODER_ACCESS_URL: "http://10.100.204.222"
-      # allow admin to open all user containers
-      CODER_DANGEROUS_ALLOW_PATH_APP_SITE_OWNER_ACCESS: true
-      # for Gitea Auth using OIDC
-      # ENSURE it ends in a "/"
-      CODER_OIDC_ISSUER_URL: "http://10.100.204.224/"
-      # place all of the required email domains
-      CODER_OIDC_EMAIL_DOMAIN: "ocsb.ca,stu.ocsb.ca,mths.ca"
-      # so that you do not get any strange validation errors, but should not be needed
-      # CODER_OIDC_IGNORE_EMAIL_VERIFIED: false
-      CODER_OIDC_CLIENT_ID: "55b6484d-dfe9-4684-86c7-6046f6c67592"
-      CODER_OIDC_CLIENT_SECRET: "gto_qh6otr2ggfcosqalk4hwy3gww6kpoqdo4gspznxzzy5jm4524khq"
-      CODER_OIDC_SIGN_IN_TEXT: "Sign in with Gitea"
-      CODER_OIDC_ICON_URL: https://docs.gitea.com/img/gitea.svg
-      #
-      #
-      #CODER_OAUTH2_PROVIDER_NAME: "Gitea"
-      #CODER_OAUTH2_PROVIDER_URL: "http://10.100.204.224"
-      #CODER_OAUTH2_CLIENT_ID: 55b6484d-dfe9-4684-86c7-6046f6c67592
-      #CODER_OAUTH2_CLIENT_SECRET: gto_qh6otr2ggfcosqalk4hwy3gww6kpoqdo4gspznxzzy5jm4524khq
-      #CODER_OAUTH2_SCOPES: "user"
-      # If self managed, set the Auth URL to your Gitea instance
-      #CODER_EXTERNAL_AUTH_0_AUTH_URL: "http://10.100.204.222/login/oauth/authorize"
-      # For GitHub
-      PASSWORD_AUTH: true
-      CODER_OAUTH2_GITHUB_DEFAULT_PROVIDER_ENABLE: false
-      #CODER_OAUTH2_GITHUB_ALLOW_SIGNUPS: true
-      #CODER_OAUTH2_GITHUB_ALLOWED_ORGS: "MTHS-ICD2O-1-2024"
-      #CODER_OAUTH2_GITHUB_CLIENT_ID: "Ov23li0ypKI49RYLsYuT"
-      #CODER_OAUTH2_GITHUB_CLIENT_SECRET: "5012647c85ff77194cfb31c3c3099cfbef62b681"      
-    # If the coder user does not have write permissions on
-    # the docker socket, you can uncomment the following
-    # lines and set the group ID to one that has write
-    # permissions on the docker socket.
-    group_add:
-      - "996" # docker group on host
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
-      # Run "docker volume rm coder_coder_home" to reset the dev tunnel url (https://abc.xyz.try.coder.app).
-      # This volume is not required in a production environment - you may safely remove it.
-      # Coder can recreate all the files it needs on restart.
-      - coder_home:/home/coder
+      - "80:3000"
+      - "222:22"
     depends_on:
-      database:
-        condition: service_healthy
-  database:
-    # Minimum supported version is 13.
-    # More versions here: https://hub.docker.com/_/postgres
-    image: "postgres:17"
-    # Uncomment the next two lines to allow connections to the database from outside the server.
-    #ports:
-    #  - "5432:5432"
+      - db
+
+  db:
+    image: docker.io/library/postgres:14
     restart: unless-stopped
     environment:
-      POSTGRES_USER: ${POSTGRES_USER:-username} # The PostgreSQL user (useful to connect to the database)
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-password} # The PostgreSQL password (useful to connect to the database)
-      POSTGRES_DB: ${POSTGRES_DB:-coder} # The PostgreSQL default database (automatically created at first launch)
+      - POSTGRES_USER=gitea
+      - POSTGRES_PASSWORD=gitea
+      - POSTGRES_DB=gitea
+    networks:
+      - gitea
     volumes:
-      - coder_data:/var/lib/postgresql/data # Use "docker volume rm coder_coder_data" to reset Coder
-    healthcheck:
-      test:
-        [
-          "CMD-SHELL",
-          "pg_isready -U ${POSTGRES_USER:-username} -d ${POSTGRES_DB:-coder}",
-        ]
-      interval: 5s
-      timeout: 5s
-      retries: 5
-volumes:
-  coder_data:
-  coder_home:
+      - ./postgres:/var/lib/postgresql/data
