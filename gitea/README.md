@@ -14,3 +14,5 @@
   - /data/compose/3/gitea/gitea/conf
   - [oauth2]
     ENABLED = true
+
+![alt Gitea admin login(./gitea_loggins.png)
