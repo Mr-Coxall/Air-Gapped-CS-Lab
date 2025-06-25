@@ -9,3 +9,6 @@
   - 200 GB disk space, 3 CPU cores, 8 GB RAM
 - use the provided `docker-compose.yml` file to run Gitea with PostgreSQL under Portainer, so it just auto restarts
 - DO NOT try to setup email, since you need 2FA on Gmail to use it
+- the app.ini file for Gitea will be in directory something like:
+  - /data/compose/3/gitea/gitea/conf
+- set port to: 80
