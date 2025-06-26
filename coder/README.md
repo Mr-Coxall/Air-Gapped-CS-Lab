@@ -5,5 +5,14 @@
 - 100 GB, 3 cores, 24 GB RAM, on Ceph-01
 - add them to HA group, so if node goes down they ar automatically moved
 
+## Connect Coder to Gitea, FIRST!!
+
+- in Gitea, create a new "Integrations, Application, OAuth2 Application"
+  - the Redirect URI:
+    ```
+    http://ics3u-1.local/api/v2/auth/oidc/callback
+    ```
+  - now use the client ID and the secret in the docker-compose.yml for Coder IDE  
+
 ## Coder IDE
 - use docker_compose.yml in this repo from proxmox

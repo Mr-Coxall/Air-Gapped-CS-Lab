@@ -2,8 +2,7 @@ services:
   coder:
     # This MUST be stable for our documentation and
     # other automations.
-    #image: ghcr.io/coder/coder:${CODER_VERSION:-latest}
-    image: ghcr.io/coder/coder:v2.23.1
+    image: ghcr.io/coder/coder:${CODER_VERSION:-latest}
     ports:
       - "80:7080"
     restart: unless-stopped
@@ -13,25 +12,36 @@ services:
       # You'll need to set CODER_ACCESS_URL to an IP or domain
       # that workspaces can reach. This cannot be localhost
       # or 127.0.0.1 for non-Docker templates!
-      #CODER_ACCESS_URL: "http://10.100.204.221"
-      CODER_ACCESS_URL: "http://ics3u-1.local"
+      CODER_ACCESS_URL: "http://10.100.204.222"
       # allow admin to open all user containers
       CODER_DANGEROUS_ALLOW_PATH_APP_SITE_OWNER_ACCESS: true
       # for Gitea Auth using OIDC
       # ENSURE it ends in a "/"
-      #CODER_OIDC_ISSUER_URL: "http://10.100.204.224/"
-      CODER_OIDC_ISSUER_URL: "http://gitea.local/"
+      CODER_OIDC_ISSUER_URL: "http://10.100.204.224/"
       # place all of the required email domains
       CODER_OIDC_EMAIL_DOMAIN: "ocsb.ca,stu.ocsb.ca,mths.ca"
       # so that you do not get any strange validation errors, but should not be needed
       # CODER_OIDC_IGNORE_EMAIL_VERIFIED: false
-      CODER_OIDC_CLIENT_ID: "bd94b8b8-bb90-4e0e-8634-1c3a60acc212"
-      CODER_OIDC_CLIENT_SECRET: "gto_d3sksbwwgilif6jjnbw7aoqznnoyeih6rnjgqieeiypfv5adnvda"
+      CODER_OIDC_CLIENT_ID: "55b6484d-dfe9-4684-86c7-6046f6c67592"
+      CODER_OIDC_CLIENT_SECRET: "gto_qh6otr2ggfcosqalk4hwy3gww6kpoqdo4gspznxzzy5jm4524khq"
       CODER_OIDC_SIGN_IN_TEXT: "Sign in with Gitea"
-      CODER_OIDC_ICON_URL: "https://docs.gitea.com/img/gitea.svg"
-      CODER_OIDC_REDIRECT_URL: "http://ics3u-1.local/api/v2/auth/oidc/callback"
-      # to remove the GitHub login button
-      CODER_GITHUB_AUTH: "false"
+      CODER_OIDC_ICON_URL: https://docs.gitea.com/img/gitea.svg
+      #
+      #
+      #CODER_OAUTH2_PROVIDER_NAME: "Gitea"
+      #CODER_OAUTH2_PROVIDER_URL: "http://10.100.204.224"
+      #CODER_OAUTH2_CLIENT_ID: 55b6484d-dfe9-4684-86c7-6046f6c67592
+      #CODER_OAUTH2_CLIENT_SECRET: gto_qh6otr2ggfcosqalk4hwy3gww6kpoqdo4gspznxzzy5jm4524khq
+      #CODER_OAUTH2_SCOPES: "user"
+      # If self managed, set the Auth URL to your Gitea instance
+      #CODER_EXTERNAL_AUTH_0_AUTH_URL: "http://10.100.204.222/login/oauth/authorize"
+      # For GitHub
+      PASSWORD_AUTH: true
+      CODER_OAUTH2_GITHUB_DEFAULT_PROVIDER_ENABLE: false
+      #CODER_OAUTH2_GITHUB_ALLOW_SIGNUPS: true
+      #CODER_OAUTH2_GITHUB_ALLOWED_ORGS: "MTHS-ICD2O-1-2024"
+      #CODER_OAUTH2_GITHUB_CLIENT_ID: "Ov23li0ypKI49RYLsYuT"
+      #CODER_OAUTH2_GITHUB_CLIENT_SECRET: "5012647c85ff77194cfb31c3c3099cfbef62b681"      
     # If the coder user does not have write permissions on
     # the docker socket, you can uncomment the following
     # lines and set the group ID to one that has write
