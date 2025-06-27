@@ -17,6 +17,7 @@ services:
       - GITEA__OAUTH2__ENABLED=true
       - GITEA__openid__ENABLE_OPENID_SIGNIN=false
       - GITEA__OAUTH2__ENABLED=true
+      - GITEA__repository__DEFAULT_PRIVATE=true
       - GITEA__repository__FORCE_PRIVATE=true
     restart: unless-stopped
     networks:
