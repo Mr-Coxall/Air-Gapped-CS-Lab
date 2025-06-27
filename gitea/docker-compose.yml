@@ -15,6 +15,9 @@ services:
       - GITEA__database__USER=gitea
       - GITEA__database__PASSWD=gitea
       - GITEA__OAUTH2__ENABLED=true
+      - GITEA__openid__ENABLE_OPENID_SIGNIN=false
+      - GITEA__OAUTH2__ENABLED=true
+      - GITEA__repository__FORCE_PRIVATE=true
     restart: unless-stopped
     networks:
       - gitea
