@@ -2,7 +2,6 @@ services:
   coder:
     # This MUST be stable for our documentation and
     # other automations.
-    #image: ghcr.io/coder/coder:${CODER_VERSION:-latest}
     image: ghcr.io/coder/coder:v2.23.1
     ports:
       - "80:7080"
@@ -13,25 +12,23 @@ services:
       # You'll need to set CODER_ACCESS_URL to an IP or domain
       # that workspaces can reach. This cannot be localhost
       # or 127.0.0.1 for non-Docker templates!
-      #CODER_ACCESS_URL: "http://10.100.204.221"
-      CODER_ACCESS_URL: "http://ics3u-1.local"
+      CODER_ACCESS_URL: "http://10.100.204.222"
       # allow admin to open all user containers
       CODER_DANGEROUS_ALLOW_PATH_APP_SITE_OWNER_ACCESS: true
       # for Gitea Auth using OIDC
+      #
       # ENSURE it ends in a "/"
-      #CODER_OIDC_ISSUER_URL: "http://10.100.204.224/"
-      CODER_OIDC_ISSUER_URL: "http://gitea.local/"
-      # place all of the required email domains
+      CODER_OIDC_ISSUER_URL: "http://10.100.204.224/"
       CODER_OIDC_EMAIL_DOMAIN: "ocsb.ca,stu.ocsb.ca,mths.ca"
-      # so that you do not get any strange validation errors, but should not be needed
-      # CODER_OIDC_IGNORE_EMAIL_VERIFIED: false
-      CODER_OIDC_CLIENT_ID: "bd94b8b8-bb90-4e0e-8634-1c3a60acc212"
-      CODER_OIDC_CLIENT_SECRET: "gto_d3sksbwwgilif6jjnbw7aoqznnoyeih6rnjgqieeiypfv5adnvda"
+      CODER_OIDC_CLIENT_ID: "e27c8ca9-00e7-4689-99b8-06054ffff91a"
+      CODER_OIDC_CLIENT_SECRET: "gto_d7ca3yp4ytu7fz7xnfvy6m6amaxqde5vyxo3ki2kjjhv72udevyq"
+      # might want to remove this for security
+      CODER_OIDC_IGNORE_EMAIL_VERIFIED: true
       CODER_OIDC_SIGN_IN_TEXT: "Sign in with Gitea"
       CODER_OIDC_ICON_URL: "https://docs.gitea.com/img/gitea.svg"
-      CODER_OIDC_REDIRECT_URL: "http://ics3u-1.local/api/v2/auth/oidc/callback"
-      # to remove the GitHub login button
-      CODER_GITHUB_AUTH: "false"
+      # remove GitHub auth
+      CODER_OAUTH2_GITHUB_DEFAULT_PROVIDER_ENABLE: false
+   
     # If the coder user does not have write permissions on
     # the docker socket, you can uncomment the following
     # lines and set the group ID to one that has write
