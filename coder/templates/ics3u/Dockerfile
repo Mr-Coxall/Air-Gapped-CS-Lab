@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/devcontainers/php:0-8.2
+FROM debian:bookworm-slim
 
 RUN apt-get update
 RUN apt-get install -y \
@@ -7,7 +7,11 @@ RUN apt-get install -y \
 	sudo \
 	wget \
 	nano \
-	npm \
+        python3 \
+	python-is-python3 \
+        build-essential \
+	black \
+        cpplint
 	&& rm -rf /var/lib/apt/lists/*
 
 ARG USER=coder
