@@ -11,7 +11,7 @@ RUN apt-get install -y \
 	python-is-python3 \
         build-essential \
 	black \
-        cpplint
+        cpplint \
 	&& rm -rf /var/lib/apt/lists/*
 
 ARG USER=coder
