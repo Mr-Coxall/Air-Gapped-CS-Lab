@@ -10,7 +10,7 @@
 - in Gitea, create a new "Integrations, Application, OAuth2 Application"
   - the Redirect URI:
     ```
-    http://ics3u-1.local/api/v2/auth/oidc/callback
+    http://10.100.204.222/api/v2/users/oidc/callback
     ```
   - now use the client ID and the secret in the docker-compose.yml for Coder IDE  
 
