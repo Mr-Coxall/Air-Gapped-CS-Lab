@@ -21,9 +21,6 @@ DISABLE_PUBLIC_REPO = true
 
 [oauth2]
 ENABLED = true
-  ```
+```
 
 ![alt Gitea admin login](./gitea_loggins.png)
-
-- you might??
-  - the first time you login, you are creating an admin account (you can NOT use the gitea.admin account created in setup!)
