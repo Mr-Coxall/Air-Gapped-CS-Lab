@@ -16,6 +16,9 @@
 
 ## Coder IDE
 - use docker_compose.yml in this repo from proxmox
+- accout:
+  -  login: admin@mths.ca
+  -  password: xxx 
 
 ## Post User Fix
 
