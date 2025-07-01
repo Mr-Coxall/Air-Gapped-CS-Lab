@@ -16,3 +16,13 @@
 
 ## Coder IDE
 - use docker_compose.yml in this repo from proxmox
+
+## Post User Fix
+
+- by default Coder will assign users like "janesmith", but I want "jane.smith"
+- run the following commands in the Linux terminal for the Coder instance:
+  ```bash
+  docker exec -it coder-database-1 psql -U username -d coder
+  UPDATE users SET username = 'fred.smith' WHERE username = 'fredsmith';
+  ```
+  - \q to get out of a psql command
