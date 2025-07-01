@@ -13,14 +13,14 @@
 - the app.ini file for Gitea will be in directory something like:
   - /data/compose/3/gitea/gitea/conf
   ```bash
-[repository]
-ROOT = /data/git/repositories
-DEFAULT_PRIVATE = true
-FORCE_PRIVATE = true
-DISABLE_PUBLIC_REPO = true
+  [repository]
+  ROOT = /data/git/repositories
+  DEFAULT_PRIVATE = true
+  FORCE_PRIVATE = true
+  DISABLE_PUBLIC_REPO = true
 
-[oauth2]
-ENABLED = true
-```
+  [oauth2]
+  ENABLED = true
+  ```
 
 ![alt Gitea admin login](./gitea_loggins.png)
