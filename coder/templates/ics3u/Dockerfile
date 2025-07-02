@@ -2,17 +2,18 @@ FROM debian:bookworm-slim
 
 RUN apt-get update
 RUN apt-get install -y \
-	curl \
-	git \
-	sudo \
-	wget \
-	nano \
-        python3 \
-	python-is-python3 \
-        build-essential \
-	black \
-        cpplint \
-	&& rm -rf /var/lib/apt/lists/*
+    curl \
+    git \
+    sudo \
+    wget \
+    nano \
+    python3 \
+    python-is-python3 \
+    build-essential \
+    gdb \
+    black \
+    cpplint \
+    && rm -rf /var/lib/apt/lists/*
 
 ARG USER=coder
 RUN useradd --groups sudo --no-create-home --shell /bin/bash ${USER} \
