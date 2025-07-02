@@ -29,3 +29,9 @@
   UPDATE users SET username = 'fred.smith' WHERE username = 'fredsmith';
   ```
   - \q to get out of a psql command
+
+## CPP Extension
+
+- MS will not open source the CPP debigging extension
+- you therefore need to dwnload it, upload it to your VSCode instance and then install
+- here is the link: https://marketplace.visualstudio.com/items?itemName=ms-vscode.cpptools
