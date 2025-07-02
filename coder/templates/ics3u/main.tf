@@ -28,7 +28,7 @@ resource "coder_agent" "main" {
   os             = "linux"
   display_apps {
     vscode       = false
-    web_terminal = false
+    web_terminal = true
     ssh_helper   = false
   }
 
