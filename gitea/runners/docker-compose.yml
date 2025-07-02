@@ -5,6 +5,7 @@ services:
       GITEA_INSTANCE_URL: "http://gitea.local"
       GITEA_RUNNER_REGISTRATION_TOKEN: "xxxxxx"
       GITEA_RUNNER_NAME: "runner-01"
+      restart: unless-stopped
       #GITEA_RUNNER_LABELS: "${RUNNER_LABELS}"
     volumes:
       - ./data:/data
