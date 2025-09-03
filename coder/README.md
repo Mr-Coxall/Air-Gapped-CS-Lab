@@ -23,7 +23,7 @@
 ## Post User Fix
 
 - by default Coder will assign users like "janesmith", but I want "jane.smith"
-- run the following commands in the Linux terminal for the Coder instance:
+- run the following commands in the LXC terminal (not the container but the linux that holds the container) for the Coder instance:
   ```bash
   docker exec -it coder-database-1 psql -U username -d coder
   UPDATE users SET username = 'fred.smith' WHERE username = 'fredsmith';
