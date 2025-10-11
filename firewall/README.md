@@ -1,4 +1,4 @@
-# Firewall Setup
+# Firewall Setup - Have not started blocking anything yet
 
 ## DNS
 
