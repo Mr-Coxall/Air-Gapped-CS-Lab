@@ -64,7 +64,7 @@
   - noTLSVerify: true
   - disableChunkedEncoding: true
  
-### Tailscale
+### Tailscale - Board now blocking
 - use community script
   - [Proxmox VE Tailscale LXC](https://community-scripts.github.io/ProxmoxVE/scripts?id=add-tailscale-lxc)
 - create a new Debian 12 (must be) LXC
