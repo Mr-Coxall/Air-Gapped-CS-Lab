@@ -5,3 +5,8 @@
     bash -c "$(curl -fsSL https://raw.githubusercontent.com/community-scripts/ProxmoxVE/main/ct/docker.sh)"
     ```
   - 10 GB disk space, 2 CPU cores, 8 GB RAM
+
+- Goto Gitea:
+  -  "Admin, Site Administration, Actions, Runners"
+  -  get "Registration Token"
+    - add this to the docker-compose.yml  
