@@ -1,11 +1,11 @@
 services:
   runner:
     image: docker.io/gitea/act_runner:0.2.12
+    restart: unless-stopped
     environment:
       GITEA_INSTANCE_URL: "http://gitea.local"
       GITEA_RUNNER_REGISTRATION_TOKEN: "xxxxxx"
       GITEA_RUNNER_NAME: "runner-01"
-      restart: unless-stopped
       #GITEA_RUNNER_LABELS: "${RUNNER_LABELS}"
     volumes:
       - ./data:/data
