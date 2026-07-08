@@ -73,6 +73,7 @@ sysctl -p
 ```
 - use community script: debian to create an LXC for tailscale to run on:
   - [Proxmox VE Debian LXC](https://community-scripts.org/scripts/debian)
+  - ensure you enable TUN
 - use community script
   - [Proxmox VE Tailscale LXC](https://community-scripts.github.io/ProxmoxVE/scripts?id=add-tailscale-lxc)
 - once installed, reboot the LXC
