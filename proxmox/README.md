@@ -65,6 +65,12 @@
   - disableChunkedEncoding: true
  
 ### Tailscale - Board now blocking
+- on the HOST node 1st run this:
+```bash
+echo 'net.ipv4.ip_forward=1' >> /etc/sysctl.conf
+echo 'net.ipv6.conf.all.forwarding=1' >> /etc/sysctl.conf
+sysctl -p
+```
 - use community script
   - [Proxmox VE Tailscale LXC](https://community-scripts.github.io/ProxmoxVE/scripts?id=add-tailscale-lxc)
 - create a new Debian 12 (must be) LXC
