@@ -86,7 +86,7 @@
   - you can check by running:
     ```bash
     sysctl net.ipv4.ip_forward
-    sysctl sysctl net.ipv4.ip_forward
+    sysctl net.ipv4.ip_forward
     ```
 - then run this command:
   -  ```bash
