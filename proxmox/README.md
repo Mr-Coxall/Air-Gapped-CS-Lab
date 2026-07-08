@@ -76,6 +76,11 @@ sysctl -p
 - create a new Debian 12 (must be) LXC
 - then in the node run the install command
 - once installed, reboot the LXC
+- install:
+```bash
+apt install ethtool
+apt install networkd-dispatcher
+```
 - now run these commands (from: https://tailscale.com/kb/1019/subnets)
   - ```bash
     echo 'net.ipv4.ip_forward = 1' | sudo tee -a /etc/sysctl.d/99-tailscale.conf
