@@ -64,17 +64,17 @@
   - noTLSVerify: true
   - disableChunkedEncoding: true
  
-### Tailscale - Board now blocking
+### Tailscale
 - on the HOST node 1st run this:
 ```bash
 echo 'net.ipv4.ip_forward=1' >> /etc/sysctl.conf
 echo 'net.ipv6.conf.all.forwarding=1' >> /etc/sysctl.conf
 sysctl -p
 ```
+- use community script: debian to create an LXC for tailscale to run on:
+  - [Proxmox VE Debian LXC](https://community-scripts.org/scripts/debian)
 - use community script
   - [Proxmox VE Tailscale LXC](https://community-scripts.github.io/ProxmoxVE/scripts?id=add-tailscale-lxc)
-- create a new Debian 12 (must be) LXC
-- then in the node run the install command
 - once installed, reboot the LXC
 - install:
 ```bash
