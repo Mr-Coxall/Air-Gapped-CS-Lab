@@ -97,8 +97,12 @@ apt install networkd-dispatcher
   - you can check by running:
     ```bash
     sysctl net.ipv4.ip_forward
-    sysctl net.ipv4.ip_forward
     ```
+- then run this command:
+```bash
+printf '#!/bin/sh\n\nethtool -K %s rx-udp-gro-forwarding on rx-gro-list off \n' "$(ip -o route get 9.9.9.9 | cut -f 5 -d " ")" | sudo tee /etc/networkd-dispatcher/routable.d/50-tailscale
+sudo chmod 755 /etc/networkd-dispatcher/routable.d/50-tailscale
+```
 - then run this command:
   -  ```bash
      tailscale up --advertise-exit-node --advertise-routes=10.100.204.0/24 --accept-routes
